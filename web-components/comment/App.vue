@@ -1,16 +1,25 @@
-# 评论组件
-文件说明：
-```
-1、文件 MyComment.vue 是评论组件，
-2、文件 App.vue 是组件的使用demo
-3、文件 download.zip 是组件中用到的图标字体
+<template>
+  <div id="app">
+    <div class="doc_item">
+      <p>标题</p>
+      <p>段落2</p>
+    </div>
+    <!--<v-comment-items></v-comment-items>-->
+    <v-my-comment></v-my-comment>
+  </div>
+</template>
 
-```
+<script>
+  import CommentItems from './mycomponents/CommentList.vue'
+  import MyComment from './mycomponents/MyComment.vue'
 
-
-1、使用MyComment.vue 父组件需要初始化评论数据（调用接口获取），数据格式为：
-```
-
+  export default {
+    components: {
+      'v-comment-items':CommentItems,
+      'v-my-comment':MyComment
+    },
+    data(){
+      return{
         comments:{
           userAndDocInfo: {
             "userId": "1",   // 当前用户id
@@ -55,11 +64,9 @@
           }
           ]
         }
-
-```
-2、 使用时需要实例化方法：
-```
-      // 此处需要完成这个两个方法的调用接口的逻辑，使数据持久化
+      }
+    },
+    methods:{
       addOneComment(item){// 添加评论的方法
         // item:
         // - docId   :文档ID             不可为空
@@ -70,7 +77,7 @@
         console.log("添加了评论")
         return 123      // 返回新增的评论ID
       },
-      changeApplaud(applaud){    // 添加赞
+      changeApplaud(applaud){
         // applaud :
         // - docId :文档ID      不可为空
         // - userId :当前用户ID  不可为空
@@ -78,17 +85,20 @@
         // - state : 状态        不可为空
         console.log("改变了赞")
       }
+    }
+  }
+</script>
 
-```
+
+<style>
 
 
-## 其他
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-其他功能待完善
-```
-
-```
-
-## changelog
-
-1. 完成评论组件的基本操作   2019-5-12
+</style>
